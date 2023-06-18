@@ -189,15 +189,6 @@ public class Start_Page2 extends AppCompatActivity {
                     // current for loop
                     // refer to the first while loop to understand better
                     if (player3.getHand().isEmpty()) {
-                        Player.setScore(players);
-                        Player.PlayerScores.displayScores();
-                        Score.setText(Player.scores.toString());
-                        Toast.makeText(Start_Page2.this, Player.scores.toString(), Toast.LENGTH_LONG).show();
-                        System.out.println("The winner of the round is " + player3.getName());
-                        PlayerTurn.setText(String.format("The Winner Is%s", player3.getName()));
-                        System.out.println("The game ended with " + player3.getName()+ " finishing their cards in hand. !\n Congrats Player " + player3.getName());
-                        Toast.makeText(Start_Page2.this, "The game ended with " + player3.getName()+ " finishing their cards in hand. !\n Congrats Player " + player3.getName(),Toast.LENGTH_LONG).show();
-                        Tool.pause(5000);
                         Intent intent = new Intent(Start_Page2.this, MainActivity.class);
                         startActivity(intent);
                         // Handle exit button click event
@@ -231,11 +222,9 @@ public class Start_Page2 extends AppCompatActivity {
 
                                 if (Play.CardPlay(players.get(CounterPlayer).getHand(), GameDeck.getCenterPile()) == 'S') {
                                     System.out.println("Cards were drawn");
-                                    Toast.makeText(Start_Page2.this, "Cards were Drawn", Toast.LENGTH_SHORT).show();
                                     break;
                                 } else if (Play.CardPlay(players.get(CounterPlayer).getHand(), GameDeck.getCenterPile()) == 'P') {
                                     System.out.println("Cards were drawn!");
-                                    Toast.makeText(Start_Page2.this, "Cards were Drawn", Toast.LENGTH_SHORT).show();
                                     break;
                                 }
                             }else{
@@ -414,7 +403,6 @@ public class Start_Page2 extends AppCompatActivity {
                         // refer to the first while loop to understand better
                         if (player3.getHand().isEmpty()) {
                             Player.setScore(players);
-
                             Score.setText(Player.scores.toString());
                             Toast.makeText(Start_Page2.this, Player.scores.toString(), Toast.LENGTH_LONG).show();
                             System.out.println("The winner of the round is " + player3.getName());
@@ -422,7 +410,6 @@ public class Start_Page2 extends AppCompatActivity {
                             System.out.println("The game ended with " + player3.getName()+ " finishing their cards in hand. !\n Congrats Player " + player3.getName());
                             Toast.makeText(Start_Page2.this, "The game ended with " + player3.getName()+ " finishing their cards in hand. !\n Congrats Player " + player3.getName(),Toast.LENGTH_LONG).show();
                             Player.PlayerScores.displayScores();
-                            Tool.pause(5000);
                             Intent intent = new Intent(Start_Page2.this, MainActivity.class);
                             startActivity(intent);
                             // Handle exit button click event
@@ -480,11 +467,9 @@ public class Start_Page2 extends AppCompatActivity {
 
                                 if (Play.CardPlay(players.get(CounterPlayer).getHand(), GameDeck.getCenterPile()) == 'S') {
                                     System.out.println("Cards were drawn");
-                                    Toast.makeText(Start_Page2.this, "Cards were Drawn", Toast.LENGTH_SHORT).show();
                                     break;
                                 } else if (Play.CardPlay(players.get(CounterPlayer).getHand(), GameDeck.getCenterPile()) == 'P') {
                                     System.out.println("Cards were drawn!");
-                                    Toast.makeText(Start_Page2.this, "Cards were Drawn", Toast.LENGTH_SHORT).show();
                                     break;
                                 }
                             }else{
@@ -570,6 +555,18 @@ public class Start_Page2 extends AppCompatActivity {
                         Counter.setText("Trick  :" + TrickCounter);
                     }
 
+                    if(players.get(CounterPlayer).getHand().isEmpty()){
+                        Player.setScore(players);
+                        Score.setText(Player.scores.toString());
+                        String message = "Winner :" + players.get(CounterPlayer).getName();
+                        PlayerTurn.setText(message);
+                        Toast.makeText(Start_Page2.this, Player.scores.toString(), Toast.LENGTH_LONG).show();
+                        System.out.println("The game ended with " + players.get(CounterPlayer).getName()+ " finishing their cards in hand. !\n Congrats Player " + players.get(CounterPlayer).getName());
+                        Toast.makeText(Start_Page2.this, "The game ended with " + players.get(CounterPlayer).getName()+ " finishing their cards in hand. !\n Congrats Player " + players.get(CounterPlayer).getName(),Toast.LENGTH_LONG).show();
+                        Player.PlayerScores.displayScores();
+
+                    }
+
                     System.out.println("Centre Pile : " + GameDeck.getCenterPile().toString());
                     System.out.println("Main Deck : " + GameDeck.getCards().toString());
                     for (Player player2 : players) {
@@ -596,6 +593,8 @@ public class Start_Page2 extends AppCompatActivity {
                         CounterPlayer = 0;
                     }
                     PlayerTurn.setText(players.get(CounterPlayer).getName().toString());
+
+
 
                 } else {
                     Toast.makeText(Start_Page2.this, "Please Press The Deck Button", Toast.LENGTH_SHORT).show();
